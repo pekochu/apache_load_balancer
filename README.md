@@ -21,4 +21,4 @@ Utilizamos Grafana para poder visualizar los recursos utilizados por cada conten
 El servidor está ubicado en el algún lugar de Alemania, por lo que el ping puede llegar a ser de `~130ms`. 
 
 ## Notas del desarrollo
-Por favor, toma un vistazo a [nuestras notas](../blob/main/NOTES.md). Contiene referencias y links utiles de los servicios que utilizamos.
+Por favor, toma un vistazo a [nuestras notas](./main/NOTES.md). Contiene referencias y links utiles de los servicios que utilizamos.
