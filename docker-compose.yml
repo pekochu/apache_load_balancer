@@ -1,0 +1,73 @@
+version: "3.2"
+services:
+    httpd01:
+        image: httpd
+        build: .
+        logging:
+            options:
+                max-size: 1g
+        container_name: httpd_balanced_01
+        environment:
+            - TZ=America/Mexico_City        
+        volumes:
+            # server files
+            - '${PWD}/httpd/htdocs:/usr/local/apache2/htdocs/'
+            # Config files
+            - '${PWD}/httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf'
+            - '${PWD}/httpd/conf/extra/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf'
+            - '${PWD}/httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
+            - '${PWD}/httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
+            - '${PWD}/httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
+        ports:
+            - "8087:80"
+            - "8097:443"
+        restart: unless-stopped
+    httpd02:
+        image: httpd
+        build: .
+        logging:
+            options:
+                max-size: 1g
+        container_name: httpd_balanced_02
+        environment:
+            - TZ=America/Mexico_City        
+        volumes:
+            # server files
+            - '${PWD}/httpd/htdocs:/usr/local/apache2/htdocs/'
+            # Config files
+            - '${PWD}/httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf'
+            - '${PWD}/httpd/conf/extra/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf'
+            - '${PWD}/httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
+            - '${PWD}/httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
+            - '${PWD}/httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
+        ports:
+            - "8088:80"
+            - "8098:443"
+        restart: unless-stopped
+    httpd03:
+        image: httpd
+        build: .
+        logging:
+            options:
+                max-size: 1g
+        container_name: httpd_balanced_03        
+        environment:
+            - TZ=America/Mexico_City
+        volumes:
+            # server files
+            - '${PWD}/httpd/htdocs:/usr/local/apache2/htdocs/'
+            # Config files
+            - '${PWD}/httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf'
+            - '${PWD}/httpd/conf/extra/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf'
+            - '${PWD}/httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
+            - '${PWD}/httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
+            - '${PWD}/httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
+        ports:
+            - "8089:80"
+            - "8099:443"
+        restart: unless-stopped
+
+networks:
+    default:
+        external:
+          name: apachesnet
