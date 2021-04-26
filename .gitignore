@@ -1,1 +1,4 @@
 .secret_password_postgres.txt
+.secret_password_mail.txt
+db.sqlite
+config.php

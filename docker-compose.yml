@@ -66,9 +66,6 @@ services:
             - '${PWD}/httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
             - '${PWD}/httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
             - '${PWD}/httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
-        ports:
-            - "8087:80"
-            - "8097:443"
         restart: unless-stopped
     httpd02:
         image: httpd
@@ -89,9 +86,6 @@ services:
             - '${PWD}/httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
             - '${PWD}/httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
             - '${PWD}/httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
-        ports:
-            - "8088:80"
-            - "8098:443"
         restart: unless-stopped
     httpd03:
         image: httpd
@@ -112,14 +106,11 @@ services:
             - '${PWD}/httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
             - '${PWD}/httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
             - '${PWD}/httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
-        ports:
-            - "8089:80"
-            - "8099:443"
         restart: unless-stopped
     php:
         build:
-            context: .
-            dockerfile: Dockerfile
+            context: php
+            dockerfile: php/Dockerfile
         logging:
             driver: "json-file"
             options:
@@ -130,11 +121,9 @@ services:
             - TZ=America/Mexico_City
         volumes:
             - '${PWD}/httpd/htdocs:/var/www/html'
-            - './php.ini-production:/usr/local/etc/php/php.ini-production'
-            - './php.ini-development:/usr/local/etc/php/php.ini-development'
+            - './php/php.ini-production:/usr/local/etc/php/php.ini-production'
+            - './php/php.ini-development:/usr/local/etc/php/php.ini-development'
         restart: unless-stopped
-        ports:
-            - "9000:9000"
 
 networks:
     default:
