@@ -16,3 +16,12 @@ Useful links
  - https://grafana.com/docs/loki/latest/installation/docker/
  - https://grafana.com/grafana/dashboards/12559
  - https://httpd.apache.org/docs/2.4/logs.html
+
+ ### PHP and PostgresSQL
+
+ Useful links
+ - https://hub.docker.com/_/php
+ - https://hub.docker.com/_/postgres
+ - https://www.digitalocean.com/community/tutorials/como-configurar-laravel-nginx-y-mysql-con-docker-compose-es
+ - https://stackoverflow.com/questions/42139605/how-do-you-manage-secret-values-with-docker-compose-v3-1
+ - https://stackoverflow.com/questions/61302378/best-practice-for-mysql-passwords-in-docker

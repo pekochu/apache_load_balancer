@@ -9,6 +9,7 @@ services:
             - 9090:9090
         command:
             - --config.file=/etc/prometheus/prometheus.yml
+            - --web.enable-admin-api
         volumes:
             - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
         depends_on:
@@ -48,7 +49,6 @@ services:
             - --config.file=/etc/promtail/config.yml            
     httpd01:
         image: httpd
-        build: .
         logging:
             driver: "json-file"
             options:
@@ -72,7 +72,6 @@ services:
         restart: unless-stopped
     httpd02:
         image: httpd
-        build: .
         logging:
             driver: "json-file"
             options:
@@ -96,7 +95,6 @@ services:
         restart: unless-stopped
     httpd03:
         image: httpd
-        build: .
         logging:
             driver: "json-file"
             options:
@@ -118,8 +116,31 @@ services:
             - "8089:80"
             - "8099:443"
         restart: unless-stopped
+    php:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        logging:
+            driver: "json-file"
+            options:
+                tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+                max-size: 1g
+        container_name: php_service
+        environment:
+            - TZ=America/Mexico_City
+        volumes:
+            - '${PWD}/httpd/htdocs:/var/www/html'
+            - './php.ini-production:/usr/local/etc/php/php.ini-production'
+            - './php.ini-development:/usr/local/etc/php/php.ini-development'
+        restart: unless-stopped
+        ports:
+            - "9000:9000"
 
 networks:
     default:
         external:
           name: apachesnet
+
+secrets:
+    POSTGRES_PASSWORD:
+        file: .secret_password_postgres.txt
