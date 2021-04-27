@@ -43,7 +43,7 @@ server {
 	location / {
 		# Proxy the load balancer
 		proxy_set_header Host $host;
-    	proxy_set_header X-Real-IP $remote_addr;
-		proxy_pass https://team.angelbrv.com;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_pass http://kanboard;
 	}
 }
