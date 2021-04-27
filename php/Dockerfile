@@ -1,15 +1,21 @@
-FROM php:8.0.3-fpm
+FROM php:7.4.16-fpm
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpng-dev \
+    libzip-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
     libonig-dev \
     libxml2-dev \
     locales \
     zip \
+    sqlite3 \
+    libsqlite3-dev \
+    libldb-dev \
+    libldap2-dev \
+    libcurl4-openssl-dev \
     jpegoptim optipng pngquant gifsicle \
     vim \
     unzip \
@@ -17,7 +23,8 @@ RUN apt-get update && apt-get install -y \
     curl
 
 # Install extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-install pdo_mysql pdo_sqlite mbstring exif pcntl bcmath 
+RUN docker-php-ext-install gd zip ldap curl dom simplexml xml filter session ctype
 RUN docker-php-source delete
 
 # Clear cache

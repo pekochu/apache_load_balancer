@@ -109,7 +109,7 @@ services:
         restart: unless-stopped
     php:
         build:
-            context: php
+            context: .
             dockerfile: php/Dockerfile
         logging:
             driver: "json-file"
@@ -123,6 +123,7 @@ services:
             - '${PWD}/httpd/htdocs:/var/www/html'
             - './php/php.ini-production:/usr/local/etc/php/php.ini-production'
             - './php/php.ini-development:/usr/local/etc/php/php.ini-development'
+            - './php/php.ini:/usr/local/etc/php/php.ini'
         restart: unless-stopped
 
 networks:
