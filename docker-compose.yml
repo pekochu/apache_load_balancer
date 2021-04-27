@@ -73,10 +73,6 @@ services:
             - '${PWD}/httpd/htdocs:/usr/local/apache2/htdocs/'
             # Config files
             - '${PWD}/httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf'
-            - '${PWD}/httpd/conf/extra/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf'
-            - '${PWD}/httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
-            - '${PWD}/httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
-            - '${PWD}/httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
         restart: unless-stopped
     httpd02:
         image: httpd
@@ -96,10 +92,6 @@ services:
             - '${PWD}/httpd/htdocs:/usr/local/apache2/htdocs/'
             # Config files
             - '${PWD}/httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf'
-            - '${PWD}/httpd/conf/extra/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf'
-            - '${PWD}/httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
-            - '${PWD}/httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
-            - '${PWD}/httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
         restart: unless-stopped
     httpd03:
         image: httpd
@@ -119,10 +111,6 @@ services:
             - '${PWD}/httpd/htdocs:/usr/local/apache2/htdocs/'
             # Config files
             - '${PWD}/httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf'
-            - '${PWD}/httpd/conf/extra/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf'
-            - '${PWD}/httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
-            - '${PWD}/httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
-            - '${PWD}/httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
         restart: unless-stopped
     php:
         build:
