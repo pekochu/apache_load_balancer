@@ -5,6 +5,8 @@ services:
         container_name: prometheus
         environment:
             - TZ=America/Mexico_City
+        networks:
+            - apaching
         ports:
             - 9090:9090
         command:
@@ -19,8 +21,10 @@ services:
         container_name: cadvisor
         environment:
             - TZ=America/Mexico_City
+        networks:
+            - apaching
         ports:
-            - 9089:8080
+            - 9089:8080        
         volumes:
             - /:/rootfs:ro
             - /var/run:/var/run:rw
@@ -31,6 +35,8 @@ services:
         container_name: loki
         environment:
             - TZ=America/Mexico_City
+        networks:
+            - apaching
         ports:
             - "9091:3100"
         command: 
@@ -42,6 +48,8 @@ services:
         container_name: promtail
         environment:
             - TZ=America/Mexico_City
+        networks:
+            - apaching
         volumes:
             - '/var/lib/docker/containers:/var/lib/docker/containers'
             - './promtail-config.yaml:/etc/promtail/config.yml'
@@ -57,6 +65,9 @@ services:
         container_name: httpd_balanced_01
         environment:
             - TZ=America/Mexico_City        
+        networks:
+            apaching:
+                ipv4_address: 172.50.0.11
         volumes:
             # server files
             - '${PWD}/httpd/htdocs:/usr/local/apache2/htdocs/'
@@ -76,7 +87,10 @@ services:
                 max-size: 1g
         container_name: httpd_balanced_02
         environment:
-            - TZ=America/Mexico_City        
+            - TZ=America/Mexico_City  
+        networks:
+            apaching:
+                ipv4_address: 172.50.0.12
         volumes:
             # server files
             - '${PWD}/httpd/htdocs:/usr/local/apache2/htdocs/'
@@ -97,6 +111,9 @@ services:
         container_name: httpd_balanced_03        
         environment:
             - TZ=America/Mexico_City
+        networks:
+            apaching:
+                ipv4_address: 172.50.0.13
         volumes:
             # server files
             - '${PWD}/httpd/htdocs:/usr/local/apache2/htdocs/'
@@ -119,6 +136,9 @@ services:
         container_name: php_service
         environment:
             - TZ=America/Mexico_City
+        networks:
+            apaching:
+                ipv4_address: 172.50.0.21
         volumes:
             - '${PWD}/httpd/htdocs:/var/www/html'
             - './php/php.ini-production:/usr/local/etc/php/php.ini-production'
@@ -127,9 +147,12 @@ services:
         restart: unless-stopped
 
 networks:
-    default:
-        external:
-          name: apachesnet
+    apaching:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.50.0.0/16
 
 secrets:
     POSTGRES_PASSWORD:
