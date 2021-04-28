@@ -70,13 +70,13 @@ services:
                 ipv4_address: 172.50.0.11
         volumes:
             # server files
-            - '${PWD}/httpd/htdocs:/usr/local/apache2/htdocs/'
+            - './httpd/htdocs:/usr/local/apache2/htdocs/'
             # Config files
-            - '${PWD}/httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf'
-            - '${PWD}/httpd/conf/extra/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf'
-            - '${PWD}/httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
-            - '${PWD}/httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
-            - '${PWD}/httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
+            - './httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf'
+            - './httpd/conf/extra/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf'
+            - './httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
+            - './httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
+            - './httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
         restart: unless-stopped
     httpd02:
         image: httpd
@@ -93,13 +93,13 @@ services:
                 ipv4_address: 172.50.0.12
         volumes:
             # server files
-            - '${PWD}/httpd/htdocs:/usr/local/apache2/htdocs/'
+            - './httpd/htdocs:/usr/local/apache2/htdocs/'
             # Config files
-            - '${PWD}/httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf'
-            - '${PWD}/httpd/conf/extra/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf'
-            - '${PWD}/httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
-            - '${PWD}/httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
-            - '${PWD}/httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
+            - './httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf'
+            - './httpd/conf/extra/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf'
+            - './httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
+            - './httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
+            - './httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
         restart: unless-stopped
     httpd03:
         image: httpd
@@ -116,13 +116,13 @@ services:
                 ipv4_address: 172.50.0.13
         volumes:
             # server files
-            - '${PWD}/httpd/htdocs:/usr/local/apache2/htdocs/'
+            - './httpd/htdocs:/usr/local/apache2/htdocs/'
             # Config files
-            - '${PWD}/httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf'
-            - '${PWD}/httpd/conf/extra/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf'
-            - '${PWD}/httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
-            - '${PWD}/httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
-            - '${PWD}/httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
+            - './httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf'
+            - './httpd/conf/extra/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf'
+            - './httpd/conf/certs/team.angelbrv.com.cer:/usr/local/apache2/conf/server.cer'
+            - './httpd/conf/certs/team.angelbrv.com.key:/usr/local/apache2/conf/server.key'
+            - './httpd/conf/certs/fullchain.cer:/usr/local/apache2/conf/fullchain.cer'
         restart: unless-stopped
     php:
         build:
@@ -140,7 +140,7 @@ services:
             apaching:
                 ipv4_address: 172.50.0.21
         volumes:
-            - '${PWD}/httpd/htdocs:/var/www/html'
+            - './httpd/htdocs:/var/www/html'
             - './php/php.ini-production:/usr/local/etc/php/php.ini-production'
             - './php/php.ini-development:/usr/local/etc/php/php.ini-development'
             - './php/php.ini:/usr/local/etc/php/php.ini'
