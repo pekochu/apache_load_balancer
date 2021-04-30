@@ -19,7 +19,7 @@ Balanceador de carga con nginx como frontend y tres servidores apache en contene
 
 Instalación recomendada
 
-```zsh
+```sh
 git clone https://github.com/pekochu/apache_load_balancer
 # Utilicen la branch del HTTP_ONLY
 git checkout http_only
