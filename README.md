@@ -17,6 +17,9 @@ Balanceador de carga con nginx como frontend y tres servidores apache en contene
 
 ## Instalación
 
+Paso a paso: 
+[https://www.youtube.com/watch?v=HVGvtSwegW4](https://www.youtube.com/watch?v=HVGvtSwegW4)
+
 Instalación recomendada
 
 ```bash
